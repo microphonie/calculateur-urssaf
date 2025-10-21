@@ -70,9 +70,9 @@ elif mode == "Heures restantes avec objectif annuel":
     "Chiffre d'affaires brut déjà réalisé depuis septembre :",
     min_value=0.0, step=0.5, format="%.2f"
     )
-    if mode === "Septembre à septembre":
+    if mode == "Septembre à septembre":
         mois_restants = 9 - month
-    if mode === "Janvier à janvier":
+    if mode == "Janvier à janvier":
         mois_restants = 12 - month
 
     if objectif_mensuel and ca_brut > 0:
