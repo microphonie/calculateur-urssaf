@@ -10,11 +10,6 @@ mode = st.radio(
     ("Brut vers net", "Combien d'heures dois-je faire pour tel salaire net ?", "Heures restantes avec objectif annuel")
 )
 
-mode = st.radio(
-    "Année civile ou scolaire ?",
-    ("Septembre à septembre", "Janvier à Janvier")
-)
-
 import datetime
 from datetime import datetime
  
@@ -62,6 +57,10 @@ elif mode == "Combien d'heures dois-je faire pour tel salaire net ?":
         st.caption(f"Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
 
 elif mode == "Heures restantes avec objectif annuel":
+    mode = st.radio(
+    "Année civile ou scolaire ?",
+    ("Septembre à septembre", "Janvier à Janvier")
+    )
     objectif_mensuel = st.number_input(
         "Salaire mensuel net à atteindre :",
         min_value=0.0, step=0.5, format="%.2f"
