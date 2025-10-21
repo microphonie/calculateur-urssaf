@@ -18,10 +18,10 @@ def salaire_mensuel_net(mensuel_brut, urssaf):
 def prelev_urssaf(mensuel_brut, urssaf):
     return mensuel_brut * (urssaf / 100)
 
-def obj_salaire_brut(mensuel_net)
+def obj_salaire_brut(mensuel_net):
     return mensuel_net / (1 - urssaf / 100)
 
-def obj_salaire_heures(mensuel_brut)
+def obj_salaire_heures(mensuel_brut):
     return mensuel_brut / 65
 
 if mode == "Brut vers net":
