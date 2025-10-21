@@ -59,10 +59,16 @@ elif mode == "Heures restantes avec objectif annuel":
     "Chiffre d'affaires brut déjà réalisé depuis septembre :",
     min_value=0.0, step=0.5, format="%.2f"
     )
+    mois_restants = st.number_input(
+    "Mois restants avant la fin de l'année",
+    min_value=0.0, step=0.5, format="%.2f"
+    )
 
     if objectif_mensuel and ca_brut > 0:
         objectif_salaire = (objectif_mensuel * 12) - (ca_brut * (1 - urssaf / 100))
-        heures_restantes = objectif_salaire / 65
-        st.success(f"Heures restantes à faire (basées sur forfait 65€/h) : **{heures_restantes:.2f} h**")
-        st.success(f"Salaire brut mensuel à faire : **{objectif_salaire_brut:.2f} €**")
+        heures_restantes_total = objectif_salaire / 65
+        heures_restantes_hebdo = heures_restantes_total / mois_restants
+        st.success(f"Heures totales restantes à faire (basées sur forfait 65€/h) : **{heures_restantes_total:.2f} h**")
+        st.info(f"Heures hebdo restantes à faire (basées sur forfait 65€/h) : **{heures_restantes_hebdo:.2f} h**")
+        st.success(f"Salaire brut mensuel à faire : **{objectif_salaire:.2f} €**")
         st.caption(f"Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
