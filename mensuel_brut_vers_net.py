@@ -82,3 +82,4 @@ elif mode == "Heures restantes avec objectif annuel":
         st.success(f"Heures totales restantes à faire (basées sur forfait 65€/h) : **{heures_restantes_total:.2f} h**")
         st.info(f"Heures hebdo restantes à faire jusqu'à la fin de l'année : **{heures_restantes_hebdo:.2f} h**")
         st.caption(f"Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
+        st.caption(f"**{month} {year}**")
