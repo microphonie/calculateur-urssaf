@@ -67,7 +67,7 @@ elif mode == "Heures restantes avec objectif annuel":
     if objectif_mensuel and ca_brut > 0:
         objectif_salaire = (objectif_mensuel * 12) - (ca_brut * (1 - urssaf / 100))
         heures_restantes_total = objectif_salaire / 65
-        heures_restantes_hebdo = heures_restantes_total / mois_restants
+        heures_restantes_hebdo = heures_restantes_total / (mois_restants / 4)
         st.success(f"Salaire brut restant à faire : **{objectif_salaire:.2f} €**")
         st.success(f"Heures totales restantes à faire (basées sur forfait 65€/h) : **{heures_restantes_total:.2f} h**")
         st.info(f"Heures hebdo restantes à faire (basées sur forfait 65€/h) : **{heures_restantes_hebdo:.2f} h**")
