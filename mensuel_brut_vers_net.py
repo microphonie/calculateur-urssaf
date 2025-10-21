@@ -7,7 +7,7 @@ st.write("Cet outil permet de déduire les cotisations URSSAF du salaire brut.")
 
 mode = st.radio(
     "Type de conversion",
-    ("Brut vers net", "Combien d'heures dois-je faire pour tel salaire net ?")
+    ("Brut vers net", "Combien d'heures dois-je faire pour tel salaire net ?", "Heures restantes avec objectif annuel")
 )
 
 urssaf = 25.6
@@ -50,7 +50,7 @@ elif mode == "Combien d'heures dois-je faire pour tel salaire net ?":
         st.success(f"Salaire brut mensuel à faire : **{objectif_salaire_brut:.2f} €**")
         st.caption(f"Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
 
-elif mode == "Combien d'heures dois-je faire pour tel salaire net ?":
+elif mode == "Heures restantes avec objectif annuel":
     objectif_mensuel = st.number_input(
         "Salaire mensuel net à atteindre :",
         min_value=0.0, step=0.5, format="%.2f"
