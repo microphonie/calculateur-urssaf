@@ -10,6 +10,17 @@ mode = st.radio(
     ("Brut vers net", "Combien d'heures dois-je faire pour tel salaire net ?", "Heures restantes avec objectif annuel")
 )
 
+mode = st.radio(
+    "Année civile ou scolaire ?",
+    ("Septembre à septembre", "Janvier à Janvier")
+)
+
+import datetime
+from datetime import datetime
+ 
+month = datetime.now().month
+year = datetime.now().year
+ 
 urssaf = 25.6
 
 def salaire_mensuel_net(mensuel_brut, urssaf):
@@ -59,10 +70,10 @@ elif mode == "Heures restantes avec objectif annuel":
     "Chiffre d'affaires brut déjà réalisé depuis septembre :",
     min_value=0.0, step=0.5, format="%.2f"
     )
-    mois_restants = st.number_input(
-    "Mois restants avant la fin de l'année",
-    min_value=0.0, step=0.5, format="%.2f"
-    )
+    if mode === "Septembre à septembre":
+        mois_restants = 9 - month
+    if mode === "Janvier à janvier":
+        mois_restants = 12 - month
 
     if objectif_mensuel and ca_brut > 0:
         objectif_salaire = (objectif_mensuel * 12) - (ca_brut * (1 - urssaf / 100))
