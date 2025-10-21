@@ -33,7 +33,7 @@ if mode == "Brut vers net":
         mensuelnet = salaire_mensuel_net(mensuel_brut, urssaf)
         prel_urssaf = prelev_urssaf(mensuel_brut, urssaf)
 
-        st.success(f"Salaire mensuel net (après déduction URSSAF) : **{mensuel_net:.2f} €**")
+        st.success(f"Salaire mensuel net (après déduction URSSAF) : **{mensuelnet:.2f} €**")
         st.info(f"Prélèvement URSSAF : **{prel_urssaf:.2f} €**")
         st.caption("Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
 
@@ -42,7 +42,7 @@ else:
         "Salaire mensuel net à atteindre :",
         min_value=0.0, step=0.5, format="%.2f"
     )
-    if heures_hebdo_reelles > 0:
+    if objectif_mensuel > 0:
         objectif_salaire_brut = obj_salaire_brut(objectif_mensuel)
         objectif_salaire_heures = obj_salaire_heures(objectif_salaire_brut)
 
