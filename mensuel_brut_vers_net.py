@@ -22,7 +22,7 @@ def obj_salaire_brut(mensuel_net):
     return mensuel_net / (1 - urssaf / 100)
 
 def obj_salaire_heures(mensuel_brut):
-    return mensuel_brut / 65
+    return (mensuel_brut / 65) / 4
 
 if mode == "Brut vers net":
     mensuel_brut = st.number_input(
@@ -46,6 +46,6 @@ else:
         objectif_salaire_brut = obj_salaire_brut(objectif_mensuel)
         objectif_salaire_heures = obj_salaire_heures(objectif_salaire_brut)
 
-        st.success(f"Heures à réaliser (basées sur forfait 65€/h) : **{objectif_salaire_heures:.2f} h**")
+        st.success(f"Heures hebdomadaires à réaliser (basées sur forfait 65€/h) : **{objectif_salaire_heures:.2f} h**")
         st.success(f"Salaire brut mensuel à faire : **{objectif_salaire_brut:.2f} €**")
         st.caption(f"Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
