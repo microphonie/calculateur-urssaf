@@ -37,7 +37,7 @@ if mode == "Brut vers net":
         st.info(f"Prélèvement URSSAF : **{prel_urssaf:.2f} €**")
         st.caption("Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
 
-else:
+elif mode == "Combien d'heures dois-je faire pour tel salaire net ?":
     objectif_mensuel = st.number_input(
         "Salaire mensuel net à atteindre :",
         min_value=0.0, step=0.5, format="%.2f"
@@ -47,5 +47,22 @@ else:
         objectif_salaire_heures = obj_salaire_heures(objectif_salaire_brut)
 
         st.success(f"Heures hebdomadaires à réaliser (basées sur forfait 65€/h) : **{objectif_salaire_heures:.2f} h**")
+        st.success(f"Salaire brut mensuel à faire : **{objectif_salaire_brut:.2f} €**")
+        st.caption(f"Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
+
+elif mode == "Combien d'heures dois-je faire pour tel salaire net ?":
+    objectif_mensuel = st.number_input(
+        "Salaire mensuel net à atteindre :",
+        min_value=0.0, step=0.5, format="%.2f"
+    )
+    ca_brut = st.number_input(
+    "Chiffre d'affaires brut déjà réalisé depuis septembre :",
+    min_value=0.0, step=0.5, format="%.2f"
+    )
+
+    if objectif_mensuel and ca_brut > 0:
+        objectif_salaire = (objectif_mensuel * 12) - (ca_brut * (1 - urssaf / 100))
+        heures_restantes = objectif_salaire / 65
+        st.success(f"Heures restantes à faire (basées sur forfait 65€/h) : **{heures_restantes:.2f} h**")
         st.success(f"Salaire brut mensuel à faire : **{objectif_salaire_brut:.2f} €**")
         st.caption(f"Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
