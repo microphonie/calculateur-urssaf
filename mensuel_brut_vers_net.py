@@ -73,7 +73,7 @@ elif mode == "Heures restantes avec objectif annuel":
         if month < 9:
             mois_restants = 9 - month
         if month >= 9:
-            mois_restants = 9 - (- month)
+            mois_restants = (9 - month) + 12
     if mode == "Janvier à janvier":
         mois_restants = 12 - month
 
