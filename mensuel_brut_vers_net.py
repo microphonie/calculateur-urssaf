@@ -88,15 +88,15 @@ elif mode == "Heures restantes avec objectif annuel":
     # formules de cours
     if objectif_mensuel and ca_brut > 0:
         objectif_salaire = (objectif_mensuel * 12) - (ca_brut * (1 - urssaf / 100))
-        forfait = (objectif_salaire/4)/65
-        indiv = (objectif_salaire/4)/70
-        stage = (objectif_salaire/4)/100
-        fanja = (objectif_salaire/4)/(350/300)
+        forfait = (objectif_salaire/4) / 65
+        indiv = (objectif_salaire/4) / 70
+        stage = (objectif_salaire/4) / 100
+        fanja = (objectif_salaire/4) / (350/300)
         heures_restantes_total = forfait + indiv + stage + fanja
         heures_restantes_hebdo = heures_restantes_total / ((mois_restants * 4) - (conges / 7) - (maladie / 7))
         st.success(f"Salaire brut restant à faire : **{objectif_salaire:.2f} €**")
         st.success(f"Heures totales restantes à faire : **{heures_restantes_total:.0f} h**")
-        st.info(f"Soit {forfait} cours en forfait, {indiv} cours à 70€/h, {stage} stage à 100€/h et {fanja} ateliers de Fanja.")
+        st.info(f"Soit {forfait:.0f} cours en forfait, {indiv:.0f} cours à 70€/h, {stage:.0f} stage à 100€/h et {fanja:.0f} ateliers de Fanja.")
         st.info(f"Heures hebdo restantes à faire jusqu'à la fin de l'année : **{heures_restantes_hebdo:.0f} h**")
         st.caption(f"Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
         st.caption(f"**{month}/{year}**")
