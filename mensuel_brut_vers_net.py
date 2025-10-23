@@ -91,7 +91,7 @@ elif mode == "Heures restantes avec objectif annuel":
         forfait = (objectif_salaire/4) / 65
         indiv = (objectif_salaire/4) / 70
         stage = (objectif_salaire/4) / 100
-        fanja = (objectif_salaire/4) / (350/300)
+        fanja = (objectif_salaire/4) / (350/3)
         heures_restantes_total = forfait + indiv + stage + fanja
         heures_restantes_hebdo = heures_restantes_total / ((mois_restants * 4) - (conges / 7) - (maladie / 7))
         st.success(f"Salaire brut restant à faire : **{objectif_salaire:.2f} €**")
