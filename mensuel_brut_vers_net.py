@@ -72,11 +72,11 @@ elif mode == "Heures restantes avec objectif annuel":
     )
     conges = st.number_input(
         "Nombre de jours de congés souhaités sur l'année :",
-        min_value=0, step=1, format="%.1f"
+        min_value=0, step=1, format="%.0f"
     )
     maladie = st.number_input(
         "Nombre de jours d'arrêt maladie pris :",
-        min_value=0, step=1, format="%.1f"
+        min_value=0, step=1, format="%.0f"
     )
     if mode == "Septembre à septembre":
         if month < 9:
