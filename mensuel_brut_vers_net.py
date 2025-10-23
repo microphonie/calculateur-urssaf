@@ -7,7 +7,7 @@ st.write("Cet outil permet de déduire les cotisations URSSAF du salaire brut.")
 
 mode = st.radio(
     "Type de conversion",
-    ("Brut vers net", "Combien d'heures dois-je faire pour tel salaire net ?", "Heures restantes avec objectif annuel")
+    ("Brut vers net", "Combien d'heures dois-je faire pour tel salaire net ?", "Heures restantes avec objectif annuel", "Formules de cours")
 )
 
 import datetime
@@ -85,13 +85,18 @@ elif mode == "Heures restantes avec objectif annuel":
             mois_restants = (9 - month) + 12
     if mode == "Janvier à janvier":
         mois_restants = 12 - month
-
+    # formules de cours
+    forfait = 65
+    indiv = 70
+    stage = 100
+    fanja = 350/300
     if objectif_mensuel and ca_brut > 0:
         objectif_salaire = (objectif_mensuel * 12) - (ca_brut * (1 - urssaf / 100))
-        heures_restantes_total = objectif_salaire / 65
+        for x in ["forfait", "indiv", "stage", "fanja"]:
+            heures_restantes_total = objectif_salaire / x
         heures_restantes_hebdo = heures_restantes_total / ((mois_restants * 4) - (conges / 7) - (maladie / 7))
         st.success(f"Salaire brut restant à faire : **{objectif_salaire:.2f} €**")
-        st.success(f"Heures totales restantes à faire (basées sur forfait 65€/h) : **{heures_restantes_total:.2f} h**")
+        st.success(f"Heures totales restantes à faire : **{heures_restantes_total:.2f} h**")
         st.info(f"Heures hebdo restantes à faire jusqu'à la fin de l'année : **{heures_restantes_hebdo:.2f} h**")
         st.caption(f"Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
         st.caption(f"**{month}/{year}**")
