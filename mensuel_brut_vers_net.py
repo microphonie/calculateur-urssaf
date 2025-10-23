@@ -48,6 +48,7 @@ elif mode == "Combien d'heures dois-je faire pour tel salaire net ?":
         "Salaire mensuel net à atteindre :",
         min_value=0.0, step=0.5, format="%.2f"
     )
+
     if objectif_mensuel > 0:
         objectif_salaire_brut = obj_salaire_brut(objectif_mensuel)
         objectif_salaire_heures = obj_salaire_heures(objectif_salaire_brut)
@@ -69,6 +70,14 @@ elif mode == "Heures restantes avec objectif annuel":
     "Chiffre d'affaires brut déjà réalisé depuis septembre :",
     min_value=0.0, step=0.5, format="%.2f"
     )
+    conges = st.number_input(
+        "Nombre de jours de congés souhaités sur l'année :",
+        min_value=0, step=1, format="%.1f"
+    )
+    maladie = st.number_input(
+        "Nombre de jours d'arrêt maladie pris :",
+        min_value=0, step=1, format="%.1f"
+    )
     if mode == "Septembre à septembre":
         if month < 9:
             mois_restants = 9 - month
@@ -80,7 +89,7 @@ elif mode == "Heures restantes avec objectif annuel":
     if objectif_mensuel and ca_brut > 0:
         objectif_salaire = (objectif_mensuel * 12) - (ca_brut * (1 - urssaf / 100))
         heures_restantes_total = objectif_salaire / 65
-        heures_restantes_hebdo = heures_restantes_total / (mois_restants * 4)
+        heures_restantes_hebdo = heures_restantes_total / ((mois_restants * 4) - (conges / 7) - (maladie / 7))
         st.success(f"Salaire brut restant à faire : **{objectif_salaire:.2f} €**")
         st.success(f"Heures totales restantes à faire (basées sur forfait 65€/h) : **{heures_restantes_total:.2f} h**")
         st.info(f"Heures hebdo restantes à faire jusqu'à la fin de l'année : **{heures_restantes_hebdo:.2f} h**")
