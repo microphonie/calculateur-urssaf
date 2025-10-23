@@ -7,7 +7,7 @@ st.write("Cet outil permet de déduire les cotisations URSSAF du salaire brut.")
 
 mode = st.radio(
     "Type de conversion",
-    ("Brut vers net", "Combien d'heures dois-je faire pour tel salaire net ?", "Heures restantes avec objectif annuel", "Formules de cours")
+    ("Brut vers net", "Combien d'heures dois-je faire pour tel salaire net ?", "Heures restantes avec objectif annuel")
 )
 
 import datetime
@@ -64,11 +64,11 @@ elif mode == "Heures restantes avec objectif annuel":
     )
     objectif_mensuel = st.number_input(
         "Salaire mensuel net à atteindre :",
-        min_value=0.0, step=0.5, format="%.2f"
+        min_value=0, step=1, format="%.0f"
     )
     ca_brut = st.number_input(
     "Chiffre d'affaires brut déjà réalisé depuis septembre :",
-    min_value=0.0, step=0.5, format="%.2f"
+    min_value=0.0, step=0.5, format="%.1f"
     )
     conges = st.number_input(
         "Nombre de jours de congés souhaités sur l'année :",
@@ -86,17 +86,17 @@ elif mode == "Heures restantes avec objectif annuel":
     if mode == "Janvier à janvier":
         mois_restants = 12 - month
     # formules de cours
-    forfait = 65
-    indiv = 70
-    stage = 100
-    fanja = 350/300
     if objectif_mensuel and ca_brut > 0:
         objectif_salaire = (objectif_mensuel * 12) - (ca_brut * (1 - urssaf / 100))
-        for x in ["forfait", "indiv", "stage", "fanja"]:
-            heures_restantes_total = objectif_salaire / x
+        forfait = (objectif_salaire/4)/65
+        indiv = (objectif_salaire/4)/70
+        stage = (objectif_salaire/4)/100
+        fanja = (objectif_salaire/4)/(350/300)
+        heures_restantes_total = forfait + indiv + stage + fanja
         heures_restantes_hebdo = heures_restantes_total / ((mois_restants * 4) - (conges / 7) - (maladie / 7))
         st.success(f"Salaire brut restant à faire : **{objectif_salaire:.2f} €**")
-        st.success(f"Heures totales restantes à faire : **{heures_restantes_total:.2f} h**")
-        st.info(f"Heures hebdo restantes à faire jusqu'à la fin de l'année : **{heures_restantes_hebdo:.2f} h**")
+        st.success(f"Heures totales restantes à faire : **{heures_restantes_total:.0f} h**")
+        st.info(f"Soit {forfait} cours en forfait, {indiv} cours à 70€/h, {stage} stage à 100€/h et {fanja} ateliers de Fanja.")
+        st.info(f"Heures hebdo restantes à faire jusqu'à la fin de l'année : **{heures_restantes_hebdo:.0f} h**")
         st.caption(f"Calcul basé sur le taux de prélèvement URSSAF au 1er janvier 2025 : 25,6.")
         st.caption(f"**{month}/{year}**")
