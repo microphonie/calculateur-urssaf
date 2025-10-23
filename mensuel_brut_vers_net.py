@@ -64,7 +64,7 @@ elif mode == "Heures restantes avec objectif annuel":
     )
     objectif_mensuel = st.number_input(
         "Salaire mensuel net à atteindre :",
-        min_value=0, step=1, format="%.0f"
+        min_value=0, step=1
     )
     ca_brut = st.number_input(
     "Chiffre d'affaires brut déjà réalisé depuis septembre :",
